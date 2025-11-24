@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<html tong="TT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ជាតុង❤️សុគន្ធារី</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Metal&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playwrite+US+Modern&display=swap" rel="stylesheet">
+<style>
+*{margin:0; padding:0; box-sizing:border-box;}
+html,body{height:100%; width:100%; font-family:sans-serif; overflow-x:hidden; scroll-behavior:smooth;}
+body{background:#a58a8ab8;}
+
+/* Intro Section */
+#firstSection{
+  height:100vh;
+  width:100vw;
+  background:url("background.jpg") center/cover no-repeat;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+#firstSection::before{
+  content:''; 
+  position:absolute; 
+  inset:0; 
+  backdrop-filter:blur(0.5px);
+  background:rgba(95, 93, 67, 0.39);
+  z-index:10;
+}
+#firstSection>*{position:relative; z-index:20;} /* Make sure all elements appear above blur */
+#topText{font-family:'Metal',cursive;font-size:5rem;color:#fff; text-shadow:2px 2px 6px rgba(0,0,0,0.6);margin-top:30px;}
+#namePNG{width:40%; max-width:300px;color: #ffffff; animation:heartbeat 1s infinite;margin-bottom:50px;}
+#openBtn{padding:14px 32px; border:none; border-radius:15px; background:#b39800; color:white; font-size:1.3rem; cursor:pointer;margin-bottom:30px;}
+#countdownContainer{text-align:center;}
+#saveText,#countdown{font-family:'Metal',sans-serif; color:#fff; text-shadow:2px 2px 6px rgba(0,0,0,0.6);}
+#saveText{font-size:1.5rem;margin-bottom:8px;}
+#text {font-family:'Metal',sans-serif; color:#fff; text-shadow:2px 2px 6px rgba(0,0,0,0.6);}
+#countdown{font-size:2.2rem;}
+@keyframes heartbeat{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}25%,75%{transform:scale(1.05);}}
+
+/* Video Section */
+#videoSection{display:none; width:100vw; height:100vh; background:#000; justify-content:center; align-items:center; position:relative;}
+#weddingVideo{width:100%; height:100%; object-fit:contain; opacity:0; transition:opacity 1s;}
+#weddingVideo.show{opacity:1;}
+
+/* Main Section */
+#mainScrollPage{display:none; position:relative; min-height:100vh; overflow-y:auto; scroll-behavior:smooth; z-index:2;}
+#mainScrollPage::before{content:''; position:fixed; top:0; left:0; right:0; bottom:0; width:100vw; height:100vh; background:url("MAIN.PNG") center/cover no-repeat;z-index:0 ;}
+#mainScrollPage::after{
+  content:'';
+  position:fixed;
+  top:0; left:0; right:0; bottom:0;
+  width:100vw; height:100vh;
+  background: url("cover.gif") center/cover no-repeat;
+  z-index:9999;
+  pointer-events: none; /* Allows scroll and touch */
+}
+.innerContent{position:relative; z-index:2; display:flex; flex-direction:column; align-items:center ; gap:20px; padding:40px 20px;}
+.innerContent img{width:100%; max-width:500px; object-fit:center;}
+
+/* Map Section */
+.mapContainer{position:relative; width:100%; display:flex; justify-content:center; align-items:center;}
+.mapBtn{position:absolute; top:20px; padding:12px 24px; font-size:1.1rem; border:none; border-radius:15px; background:#c77b6f; color:white; cursor:pointer;}
+
+/* Gift Section */
+#giftImg{position:relative;width:center ;display:flex; flex-direction:column; align-items:center; gap:20px; padding:0;}
+
+/* Gallery Section */
+#saveText{font-family:'Metal',sans-serif; font-size:2rem; color:#7A611D; margin:20px 0;text-align:center;}
+#gallerySection{display:flex; flex-direction:column; width:100%; min-height:100vh; background:#fff;}
+.galleryGrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:4px; padding:6px;}
+.galleryGrid img{width:100%; height:150px; object-fit:cover; cursor:pointer;}
+.galleryGrid img:hover{transform:scale(1.05);}
+
+/* Lightbox */
+#lightbox{display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); justify-content:center; align-items:center; z-index:999;}
+#lightbox img{max-width:95%; max-height:95%; transition:opacity 0.3s ease;}
+#prevBtn, #nextBtn{position:absolute; top:50%; transform:translateY(-50%); font-size:3rem; color:white; background:rgba(0,0,0,0.3); border:none; border-radius:50%; width:60px; height:60px; cursor:pointer;}
+#prevBtn{left:20px;}
+#nextBtn{right:20px;}
+#closeBtn{position:absolute; top:20px; right:20px; font-size:2.5rem; color:white; background: rgba(0,0,0,0.4); border:none; border-radius:50%; width:50px; height:50px; cursor:pointer; display:flex; justify-content:center; align-items:center; z-index:1000;}
+#closeBtn:hover{background: rgba(0,0,0,0.6);}
+
+/* Bottom Button Bar */
+#btnBar{position:fixed; bottom:60px; left:50%; transform:translateX(-50%); display:none; gap:10px; z-index:100; background:rgba(243,150,150,0.5); padding:8px 10px; border-radius:40px; backdrop-filter:blur(3px);}
+#btnBar button{background:rgba(207, 189, 21, 0.531); color:#fff; border:none; padding:4px; border-radius:60px; cursor:pointer;}
+#musicBtn svg{width:24px; height:24px;}
+
+/* Responsive */
+@media(max-width:1024px){#topText{font-size:2.5rem;}#namePNG{width:50%;}#openBtn{font-size:1.2rem;padding:12px 28px;}#saveText{font-size:1.3rem;}#countdown{font-size:2rem;}}
+@media(max-width:768px){#topText{font-size:2rem;}#namePNG{width:60%;}#openBtn{font-size:1rem;padding:10px 22px;}#saveText{font-size:1.1rem;}#countdown{font-size:1.7rem;}.galleryGrid{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:480px){
+  #topText{font-size:1.6rem;}
+  #namePNG{width:70%;}
+  #openBtn{font-size:0.9rem;padding:8px 20px;}
+  #saveText{font-size:1rem;}
+  #countdown{font-size:1.4rem;}
+  .galleryGrid{
+    grid-template-columns:1fr !important;
+    gap:10px;
+  }
+  .galleryGrid img{
+    width:100%;
+    height:auto;
+    aspect-ratio: 4/3;
+    object-fit:cover;
+    border-radius:10px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Intro -->
+<div id="firstSection">
+  <div id="topText">សិរីមង្គលអាពាហ៍ពិពាហ៍</div>
+  <div id="topText">សូមគោរពអញ្ជើញ</div>
+  <img id="namePNG" src="name.png" alt="Names PNG">
+  <button id="openBtn">បើកសំបុត្រ</button>
+  <div id="countdownContainer">
+    <div id="text">រាប់ថយក្រោយថ្ងៃសិរីមង្គល</div>
+    <div id="text">ថ្ងៃអាទិត្យ ទី១៤ ខែធ្នូ ឆ្នាំ២០២៥</div>
+    <div id="countdown"></div>
+  </div>
+</div>
+
+<!-- Video -->
+<div id="videoSection">
+  <video id="weddingVideo" src="IMG_8022.MOV"></video>
+</div>
+
+<!-- Main -->
+<div id="mainScrollPage">
+  <div class="innerContent">
+    <img id="invitationImg" src="Wedding Invitation.png" alt="Invitation">
+    <img id="eventImg" src="event2.png" alt="Event">
+
+    <div class="mapContainer">
+      <img id="mapImg" src="map.png" alt="Map Image">
+      <button class="mapBtn" onclick="window.open('https://www.google.com/maps/search/11.525351,+104.854504?entry=tts','_blank')">ចុចបើកផែនទី</button>
+    </div>
+
+    <img id="giftImg" src="Red and Gold Floral Wedding Invitation.png" alt="Gift QR">
+
+    <!-- Gallery -->
+    <div id="gallerySection">
+      <div id="saveText">វិចិត្រសាល</div>
+      <div class="galleryGrid">
+        <img src="1.jpg"><img src="2.jpg"><img src="3.jpg"><img src="4.jpg">
+        <img src="5.jpg"><img src="6.jpg"><img src="7.jpg"><img src="8.jpg">
+        <img src="9.jpg"><img src="10.jpg"><img src="11.jpg"><img src="12.jpg">
+        <img src="13.jpg"><img src="14.jpg"><img src="15.jpg"><img src="16.jpg">
+        <img src="17.jpg"><img src="18.jpg"><img src="19.jpg"><img src="20.jpg"><img src="21.jpg">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox">
+  <button id="prevBtn">&#10094;</button>
+  <img id="lightboxImg">
+  <button id="nextBtn">&#10095;</button>
+  <button id="closeBtn">✖</button>
+</div>
+
+<!-- Bottom Button Bar -->
+<div id="btnBar">
+  <button onclick="scrollToSection('invitationImg')"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#7A611D">
+    <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z"/>
+  </svg></button>
+  <button onclick="scrollToSection('eventImg')"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#7A611D">
+    <path d="M640-120q-33 0-56.5-23.5T560-200v-160q0-33 23.5-56.5T640-440h160q33 0 56.5 23.5T880-360v160q0 33-23.5 56.5T800-120H640Zm0-80h160v-160H640v160ZM80-240v-80h360v80H80Zm560-280q-33 0-56.5-23.5T560-600v-160q0-33 23.5-56.5T640-840h160q33 0 56.5 23.5T880-760v160q0 33-23.5 56.5T800-520H640Zm0-80h160v-160H640v160ZM80-640v-80h360v80H80Zm640 360Zm0-400Z"/>
+  </svg></button>
+  <button id="musicBtn">
+    <svg id="musicIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#7A611D">
+      <path d="M520-200v-560h240v560H520Zm-320 0v-560h240v560H200Zm400-80h80v-400h-80v400Zm-320 0h80v-400h-80v400Zm0-400v400-400Zm320 0v400-400Z"/>
+    </svg>
+  </button>
+  <button onclick="scrollToSection('mapImg')"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#7A611D">
+    <path d="m600-120-240-84-186 72q-20 8-37-4.5T120-170v-560q0-13 7.5-23t20.5-15l212-72 240 84 186-72q20-8 37 4.5t17 33.5v560q0 13-7.5 23T812-192l-212 72Zm-40-98v-468l-160-56v468l160 56Zm80 0 120-40v-474l-120 46v468Zm-440-10 120-46v-468l-120 40v474Zm440-458v468-468Zm-320-56v468-468Z"/></svg></button>
+  <button onclick="scrollToSection('giftImg')"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#7A611D"><path d="M160-80v-440H80v-240h208q-5-9-6.5-19t-1.5-21q0-50 35-85t85-35q23 0 43 8.5t37 23.5q17-16 37-24t43-8q50 0 85 35t35 85q0 11-2 20.5t-6 19.5h208v240h-80v440H160Zm400-760q-17 0-28.5 11.5T520-800q0 17 11.5 28.5T560-760q17 0 28.5-11.5T600-800q0-17-11.5-28.5T560-840Zm-200 40q0 17 11.5 28.5T400-760q17 0 28.5-11.5T440-800q0-17-11.5-28.5T400-840q-17 0-28.5 11.5T360-800ZM160-680v80h280v-80H160Zm280 520v-360H240v360h200Zm80 0h200v-360H520v360Zm280-440v-80H520v80h280Z"/>
+  </svg></button>
+  <button onclick="scrollToSection('gallerySection')"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#7A611D"><path d="M480-260q75 0 127.5-52.5T660-440q0-75-52.5-127.5T480-620q-75 0-127.5 52.5T300-440q0 75 52.5 127.5T480-260Zm0-80q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM160-120q-33 0-56.5-23.5T80-200v-480q0-33 23.5-56.5T160-760h126l74-80h240l74 80h126q33 0 56.5 23.5T880-680v480q0 33-23.5 56.5T800-120H160Zm0-80h640v-480H638l-73-80H395l-73 80H160v480Zm320-240Z"/>
+  </svg></button>
+</div>
+
+<audio id="bgAudio" loop preload="auto">
+  <source src="keopnek.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Countdown
+const countdown = document.getElementById('countdown');
+const weddingDate = new Date('December 14, 2025 00:00:00').getTime();
+function updateCountdown(){
+  const now = new Date().getTime();
+  const diff = weddingDate - now;
+  if(diff < 0){countdown.innerHTML="💖 Our Wedding Day is Here! 💖"; return;}
+  const d = Math.floor(diff / (1000*60*60*24));
+  const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+  const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+  const s = Math.floor((diff % (1000*60)) / 1000);
+  countdown.innerHTML=`${d}ថ្ងៃ ${h}ម៉ោង ${m}នាទី ${s}វិនាទី`;
+}
+setInterval(updateCountdown,1000);
+
+// Elements
+const openBtn = document.getElementById('openBtn');
+const firstSection = document.getElementById('firstSection');
+const videoSection = document.getElementById('videoSection');
+const weddingVideo = document.getElementById('weddingVideo');
+const mainScrollPage = document.getElementById('mainScrollPage');
+const galleryImages = document.querySelectorAll('.galleryGrid img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const closeBtn = document.getElementById('closeBtn');
+const nextBtn = document.getElementById('nextBtn');
+const prevBtn = document.getElementById('prevBtn');
+const btnBar = document.getElementById('btnBar');
+const bgAudio = document.getElementById('bgAudio');
+const musicBtn = document.getElementById('musicBtn');
+const musicIcon = document.getElementById('musicIcon');
+
+// Auto-play SVGs
+const playSVG = `<path d="M320-200v-560l440 280-440 280Zm80-280Zm0 134 210-134-210-134v268Z"/>`;
+const pauseSVG = `<path d="M520-200v-560h240v560H520Zm-320 0v-560h240v560H200Zm400-80h80v-400h-80v400Zm-320 0h80v-400h-80v400Zm0-400v400-400Zm320 0v400-400Z"/>`;
+
+// Open Invitation
+openBtn.addEventListener('click', ()=>{
+  firstSection.style.display='none';
+  videoSection.style.display='flex';
+  weddingVideo.classList.add('show');
+  weddingVideo.play();
+});
+
+// Video end
+weddingVideo.addEventListener('ended', ()=>{
+  videoSection.style.display='none';
+  mainScrollPage.style.display='block';
+  btnBar.style.display='flex';
+  bgAudio.play();
+  musicIcon.innerHTML = pauseSVG;
+});
+
+// Music toggle
+musicBtn.addEventListener('click', ()=>{
+  if(bgAudio.paused){bgAudio.play(); musicIcon.innerHTML = pauseSVG;}
+  else{bgAudio.pause(); musicIcon.innerHTML = playSVG;}
+});
+
+// Scroll to section
+function scrollToSection(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
+
+// Gallery
+galleryImages.forEach(img => {
+  img.addEventListener('click', ()=>{
+    lightbox.style.display='flex';
+    lightboxImg.src = img.src;
+    lightboxImg.style.opacity=0;
+    setTimeout(()=>lightboxImg.style.opacity=1,10);
+  });
+});
+closeBtn.addEventListener('click', ()=>lightbox.style.display='none');
+nextBtn.addEventListener('click', nextImage);
+prevBtn.addEventListener('click', prevImage);
+
+function nextImage(){
+  const idx = Array.from(galleryImages).findIndex(img=>img.src===lightboxImg.src);
+  const nextIdx = (idx+1) % galleryImages.length;
+  fadeImage(galleryImages[nextIdx].src);
+}
+function prevImage(){
+  const idx = Array.from(galleryImages).findIndex(img=>img.src===lightboxImg.src);
+  const prevIdx = (idx-1+galleryImages.length) % galleryImages.length;
+  fadeImage(galleryImages[prevIdx].src);
+}
+function fadeImage(src){
+  lightboxImg.style.opacity=0;
+  setTimeout(()=>{lightboxImg.src=src; lightboxImg.style.opacity=1;},200);
+}
+
+// Swipe
+let startX=0,endX=0;
+lightbox.addEventListener('touchstart',e=>{startX=e.touches[0].clientX;});
+lightbox.addEventListener('touchmove',e=>{endX=e.touches[0].clientX;});
+lightbox.addEventListener('touchend',e=>{
+  const diff=startX-endX;
+  if(Math.abs(diff)>50){if(diff>0) nextImage(); else prevImage();}
+});
+
+// Keyboard
+document.addEventListener('keydown', e=>{
+  if(lightbox.style.display==='flex'){
+    if(e.key==='ArrowRight') nextImage();
+    if(e.key==='ArrowLeft') prevImage();
+    if(e.key==='Escape') lightbox.style.display='none';
+  }
+});
+</script>
+
+</body>
+</html>
